@@ -60,6 +60,7 @@ public class MainScreen {
         taskTableModel = new TaskTableModel();
         taskTable.setModel(taskTableModel);
 
+        // Auto-select first project on the list at launch and load its tasks
         if (!projectModel.isEmpty()) {
             projectList.setSelectedIndex(0);
             int projectIndex = projectList.getSelectedIndex();
@@ -76,12 +77,17 @@ public class MainScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
+                // Detect mouse click at table cell and identify its row and column
                 int rowIndex = taskTable.rowAtPoint(e.getPoint());
                 int columnIndex = taskTable.columnAtPoint(e.getPoint());
+
+                // Get task object from task list based on clicked row
                 Task task = taskTableModel.getTaskList().get(rowIndex);
 
                 switch (columnIndex) {
                     case 3:
+                        // Toggle task "completed" status
                         try {
                             taskController.update(task);
                         } catch (SQLException ex) {
@@ -102,6 +108,8 @@ public class MainScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
+                // Load tasks for current project
                 int projectIndex = projectList.getSelectedIndex();
                 Project project = projectModel.get(projectIndex);
                 try {
@@ -130,7 +138,8 @@ public class MainScreen {
         showJTableTasks(!tasks.isEmpty());
     }
 
-    public void getProjectDialog() {
+    // Open "add new project" dialog window
+    public void showProjectDialog() {
         projectDialog = new ProjectDialogScreen();
         projectDialog.setMinimumSize(new Dimension(400, 415));
         projectDialog.setResizable(false);
@@ -144,11 +153,12 @@ public class MainScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                getProjectDialog();
+                showProjectDialog();
             }
         });
     }
 
+    // Refresh project list after project dialog window is closed to include new saved projects, if any
     public void refreshProjectList() {
         projectDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -163,7 +173,8 @@ public class MainScreen {
         });
     }
 
-    public void getTaskDialog() {
+    // Open "add new task" dialog window
+    public void showTaskDialog() {
         taskDialog = new TaskDialogScreen();
 
         int projectIndex = projectList.getSelectedIndex();
@@ -183,11 +194,12 @@ public class MainScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                getTaskDialog();
+                showTaskDialog();
             }
         });
     }
 
+    // Refresh task list after task dialog window is closed to include new saved tasks, if any
     public void refreshTaskList() {
         taskDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -204,22 +216,27 @@ public class MainScreen {
         });
     }
 
+    // Methods add() and remove() are commented out below because they were preventing the program to start
     public void showJTableTasks(boolean hasTasks) {
         if (hasTasks) {
+            // If the selected project is not empty, hide the panel containing "You have no tasks here" message
             if (emptyTaskList.isVisible()) {
                 emptyTaskList.setVisible(false);
 //                taskListPanel.remove(emptyTaskList);
             }
 
+            // Un-hide the table containing project's tasks
 //            taskListPanel.add(taskScrollPane);
             taskScrollPane.setVisible(true);
             taskScrollPane.setSize(taskListPanel.getWidth(), taskListPanel.getHeight());
         } else {
+            // If the selected project is empty, hide the table containing project's tasks
             if (taskScrollPane.isVisible()) {
                 taskScrollPane.setVisible(false);
 //                taskListPanel.remove(taskScrollPane);
             }
 
+//            Un-hide the panel containing "You have no tasks here" message
 //            taskListPanel.add(emptyTaskList);
             emptyTaskList.setVisible(true);
             emptyTaskList.setSize(taskListPanel.getWidth(), taskListPanel.getHeight());
