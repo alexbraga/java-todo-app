@@ -4,6 +4,7 @@ import controller.ProjectController;
 import controller.TaskController;
 import model.Project;
 import model.Task;
+import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
 
 import javax.swing.*;
@@ -254,6 +255,7 @@ public class MainScreen {
         taskTable.getTableHeader().setFont(new Font("Noto Sans", Font.BOLD, 14));
         taskTable.getTableHeader().setBackground(new Color(0, 153, 102));
         taskTable.getTableHeader().setForeground(new Color(255, 255, 255));
+
         taskTable.setAutoCreateRowSorter(false);
         taskTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -261,6 +263,8 @@ public class MainScreen {
         taskTable.getColumnModel().getColumn(1).setPreferredWidth(200);
         taskTable.getColumnModel().getColumn(2).setPreferredWidth(90);
         taskTable.getColumnModel().getColumn(3).setPreferredWidth(90);
+
+        taskTable.getColumnModel().getColumn(2).setCellRenderer(new DeadlineColumnCellRenderer());
     }
 
     public static void main(String[] args) throws SQLException {
