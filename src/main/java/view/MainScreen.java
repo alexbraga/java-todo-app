@@ -216,28 +216,27 @@ public class MainScreen {
         });
     }
 
-    // Methods add() and remove() are commented out below because they were preventing the program to start
     public void showJTableTasks(boolean hasTasks) {
         if (hasTasks) {
             // If the selected project is not empty, hide the panel containing "You have no tasks here" message
             if (emptyTaskList.isVisible()) {
                 emptyTaskList.setVisible(false);
-//                taskListPanel.remove(emptyTaskList);
+                taskListPanel.remove(emptyTaskList);
             }
 
             // Un-hide the table containing project's tasks
-//            taskListPanel.add(taskScrollPane);
+            taskListPanel.add(taskScrollPane);
             taskScrollPane.setVisible(true);
             taskScrollPane.setSize(taskListPanel.getWidth(), taskListPanel.getHeight());
         } else {
             // If the selected project is empty, hide the table containing project's tasks
             if (taskScrollPane.isVisible()) {
                 taskScrollPane.setVisible(false);
-//                taskListPanel.remove(taskScrollPane);
+                taskListPanel.remove(taskScrollPane);
             }
 
-//            Un-hide the panel containing "You have no tasks here" message
-//            taskListPanel.add(emptyTaskList);
+            // Un-hide the panel containing "You have no tasks here" message
+            taskListPanel.add(emptyTaskList);
             emptyTaskList.setVisible(true);
             emptyTaskList.setSize(taskListPanel.getWidth(), taskListPanel.getHeight());
         }
@@ -247,7 +246,7 @@ public class MainScreen {
         taskTable.getTableHeader().setFont(new Font("Noto Sans", Font.BOLD, 14));
         taskTable.getTableHeader().setBackground(new Color(0, 153, 102));
         taskTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        taskTable.setAutoCreateRowSorter(true);
+        taskTable.setAutoCreateRowSorter(false);
         taskTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         taskTable.getColumnModel().getColumn(0).setPreferredWidth(150);
