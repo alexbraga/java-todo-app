@@ -34,7 +34,6 @@ public class MainScreen {
     private JPanel root;
     private JScrollPane taskScrollPane;
     private ProjectDialogScreen projectDialog;
-    private TaskDialogScreen taskDialog;
     private ProjectController projectController;
     private TaskController taskController;
     private DefaultListModel<Project> projectModel;
@@ -43,8 +42,6 @@ public class MainScreen {
     public MainScreen() throws SQLException {
         initDataController();
         initComponentsModel();
-        addProject();
-        addTask();
         formatTableStyle();
     }
 
@@ -68,8 +65,10 @@ public class MainScreen {
             loadTasks(project.getId());
         }
 
-        jTableClickedEvent();
         jListClickedEvent();
+        jTableClickedEvent();
+        addProject();
+        addTask();
     }
 
     public void jTableClickedEvent() {
@@ -96,8 +95,17 @@ public class MainScreen {
 
                         break;
                     case 4:
+                        break;
                     case 5:
-                    default:
+                        try {
+                            taskController.removeById(task.getId());
+                            JOptionPane.showMessageDialog(root, "Task deleted successfully.");
+                            refreshTaskList();
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+                        break;
                 }
             }
         });
@@ -109,7 +117,7 @@ public class MainScreen {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
-                // Load tasks for current project
+                // Load tasks based on selected project
                 int projectIndex = projectList.getSelectedIndex();
                 Project project = projectModel.get(projectIndex);
                 try {
@@ -175,8 +183,9 @@ public class MainScreen {
 
     // Open "add new task" dialog window
     public void showTaskDialog() {
-        taskDialog = new TaskDialogScreen();
+        TaskDialogScreen taskDialog = new TaskDialogScreen();
 
+        // Set project for new task based on selection
         int projectIndex = projectList.getSelectedIndex();
         Project project = projectModel.get(projectIndex);
         taskDialog.setProject(project);
@@ -186,7 +195,13 @@ public class MainScreen {
         taskDialog.setLocationRelativeTo(null);
         taskDialog.setVisible(true);
 
-        refreshTaskList();
+        taskDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                super.windowClosed(e);
+                refreshTaskList();
+            }
+        });
     }
 
     public void addTask() {
@@ -199,43 +214,36 @@ public class MainScreen {
         });
     }
 
-    // Refresh task list after task dialog window is closed to include new saved tasks, if any
     public void refreshTaskList() {
-        taskDialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                super.windowClosed(e);
-                try {
-                    int projectIndex = projectList.getSelectedIndex();
-                    Project project = projectModel.get(projectIndex);
-                    loadTasks(project.getId());
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(root, "Cannot refresh project list. Please, try again or restart the application.");
-                }
-            }
-        });
+        try {
+            int projectIndex = projectList.getSelectedIndex();
+            Project project = projectModel.get(projectIndex);
+            loadTasks(project.getId());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(root, "Cannot refresh project list. Please, try again or restart the application.");
+        }
     }
 
     public void showJTableTasks(boolean hasTasks) {
         if (hasTasks) {
-            // If the selected project is not empty, hide the panel containing "You have no tasks here" message
+            // If the selected project is not empty, hide and remove the panel containing "You have no tasks here" message
             if (emptyTaskList.isVisible()) {
                 emptyTaskList.setVisible(false);
                 taskListPanel.remove(emptyTaskList);
             }
 
-            // Un-hide the table containing project's tasks
+            // Add and un-hide the table containing project's tasks
             taskListPanel.add(taskScrollPane);
             taskScrollPane.setVisible(true);
             taskScrollPane.setSize(taskListPanel.getWidth(), taskListPanel.getHeight());
         } else {
-            // If the selected project is empty, hide the table containing project's tasks
+            // If the selected project is empty, hide and remove the table containing project's tasks
             if (taskScrollPane.isVisible()) {
                 taskScrollPane.setVisible(false);
                 taskListPanel.remove(taskScrollPane);
             }
 
-            // Un-hide the panel containing "You have no tasks here" message
+            // Add and un-hide the panel containing "You have no tasks here" message
             taskListPanel.add(emptyTaskList);
             emptyTaskList.setVisible(true);
             emptyTaskList.setSize(taskListPanel.getWidth(), taskListPanel.getHeight());

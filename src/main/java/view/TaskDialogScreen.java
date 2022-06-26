@@ -57,11 +57,11 @@ public class TaskDialogScreen extends JDialog {
                     task.setDescription(descriptionTextArea.getText());
                     task.setIsCompleted(false);
                     task.setNotes(notesTextArea.getText());
+                    task.setProjectId(project.getId());
 
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     Date deadline = dateFormat.parse(deadlineTextField.getText());
                     task.setDeadline(deadline);
-                    task.setProjectId(project.getId());
 
                     controller.save(task);
 
