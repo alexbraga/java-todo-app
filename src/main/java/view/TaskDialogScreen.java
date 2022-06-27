@@ -53,20 +53,25 @@ public class TaskDialogScreen extends JDialog {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    task.setName(nameTextField.getText());
-                    task.setDescription(descriptionTextArea.getText());
-                    task.setIsCompleted(false);
-                    task.setNotes(notesTextArea.getText());
-                    task.setProjectId(project.getId());
+                    if (!nameTextField.getText().isEmpty() && !deadlineTextField.getText().isEmpty()) {
+                        // If the 'Name' and 'Deadline' fields are not empty, get user input and save the new task
+                        task.setName(nameTextField.getText());
+                        task.setDescription(descriptionTextArea.getText());
+                        task.setIsCompleted(false);
+                        task.setNotes(notesTextArea.getText());
+                        task.setProjectId(project.getId());
 
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    Date deadline = dateFormat.parse(deadlineTextField.getText());
-                    task.setDeadline(deadline);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date deadline = dateFormat.parse(deadlineTextField.getText());
+                        task.setDeadline(deadline);
 
-                    controller.save(task);
+                        controller.save(task);
 
-                    JOptionPane.showMessageDialog(rootPane, "Task saved successfully.");
-                    onOK();
+                        JOptionPane.showMessageDialog(rootPane, "Task saved successfully.");
+                        onOK();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Task not saved. 'Name' and 'Deadline' cannot be empty.");
+                    }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(rootPane, ex.getMessage());
                 }
@@ -99,7 +104,6 @@ public class TaskDialogScreen extends JDialog {
         deadlineTextField.setFormatterFactory(new DefaultFormatterFactory(dateFormatter));
     }
 
-
     public static void main(String[] args) {
         TaskDialogScreen dialog = new TaskDialogScreen();
         dialog.pack();
@@ -107,4 +111,3 @@ public class TaskDialogScreen extends JDialog {
         System.exit(0);
     }
 }
-
