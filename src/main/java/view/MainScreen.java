@@ -4,6 +4,7 @@ import controller.ProjectController;
 import controller.TaskController;
 import model.Project;
 import model.Task;
+import util.ButtonColumnCellRenderer;
 import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
 
@@ -265,6 +266,8 @@ public class MainScreen {
         taskTable.getColumnModel().getColumn(3).setPreferredWidth(90);
 
         taskTable.getColumnModel().getColumn(2).setCellRenderer(new DeadlineColumnCellRenderer());
+        taskTable.getColumnModel().getColumn(4).setCellRenderer(new ButtonColumnCellRenderer("edit"));
+        taskTable.getColumnModel().getColumn(5).setCellRenderer(new ButtonColumnCellRenderer("delete"));
     }
 
     public static void main(String[] args) throws SQLException {
