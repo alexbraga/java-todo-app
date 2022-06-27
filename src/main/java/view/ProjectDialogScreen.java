@@ -36,7 +36,7 @@ public class ProjectDialogScreen extends JDialog {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (!nameTextField.getText().equals("")) {
+                    if (!nameTextField.getText().isEmpty()) {
                         // If the 'Name' field is not empty, get user input and save the new project
                         project.setName(nameTextField.getText());
                         project.setDescription(descriptionTextArea.getText());
@@ -45,7 +45,7 @@ public class ProjectDialogScreen extends JDialog {
                         JOptionPane.showMessageDialog(rootPane, "Project saved successfully.");
                         onOK();
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Project not saved. 'Name' field cannot be empty.");
+                        JOptionPane.showMessageDialog(rootPane, "Project not saved. 'Name' cannot be empty.");
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(rootPane, ex.getMessage());

@@ -76,7 +76,7 @@
               <font name="Noto Sans" size="14" style="0"/>
               <foreground color="-16777216"/>
               <labelFor value="8490a"/>
-              <text value="Name"/>
+              <text value="Name*"/>
               <verticalAlignment value="3"/>
               <verticalTextPosition value="0"/>
             </properties>

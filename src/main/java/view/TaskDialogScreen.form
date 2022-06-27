@@ -67,7 +67,7 @@
               <font name="Noto Sans" size="14" style="0"/>
               <foreground color="-16777216"/>
               <labelFor value="181d7"/>
-              <text value="Name"/>
+              <text value="Name*"/>
               <verticalAlignment value="3"/>
             </properties>
           </component>
@@ -100,7 +100,7 @@
               <font name="Noto Sans" size="14" style="0"/>
               <foreground color="-16777216"/>
               <labelFor value="c699"/>
-              <text value="Deadline"/>
+              <text value="Deadline*"/>
               <verticalAlignment value="3"/>
             </properties>
           </component>
