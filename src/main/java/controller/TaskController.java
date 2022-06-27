@@ -69,8 +69,8 @@ public class TaskController {
                 task.setIsCompleted(result.getBoolean("completed"));
                 task.setNotes(result.getString("notes"));
                 task.setDeadline(result.getDate("deadline"));
-                task.setDeadline(result.getDate("created_at"));
-                task.setDeadline(result.getDate("updated_at"));
+                task.setCreatedAt(result.getDate("created_at"));
+                task.setUpdatedAt(result.getDate("updated_at"));
                 task.setProjectId(result.getInt("project_id"));
 
                 tasks.add(task);
@@ -92,7 +92,6 @@ public class TaskController {
                 "notes = ?, " +
                 "deadline = ?," +
                 "created_at = ?," +
-                "updated_at = ?," +
                 "project_id = ? " +
                 "WHERE id = ?";
 
@@ -109,9 +108,8 @@ public class TaskController {
             statement.setString(4, task.getNotes());
             statement.setDate(5, new Date(task.getDeadline().getTime()));
             statement.setDate(6, new Date(task.getCreatedAt().getTime()));
-            statement.setDate(7, new Date(task.getUpdatedAt().getTime()));
-            statement.setInt(8, task.getProjectId());
-            statement.setInt(9, task.getId());
+            statement.setInt(7, task.getProjectId());
+            statement.setInt(8, task.getId());
 
             statement.execute();
         } catch (SQLException ex) {
