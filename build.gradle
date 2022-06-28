@@ -18,6 +18,15 @@ dependencies {
     implementation 'io.github.cdimascio:dotenv-java:2.2.4'
 }
 
+jar {
+    manifest {
+        attributes(
+                "Main-Class": "main.TodoApp",
+                "Class-Path": configurations.runtimeClasspath.files.collect { it.getName() }.join(' ')
+        )
+    }
+}
+
 test {
     useJUnitPlatform()
 }
