@@ -97,20 +97,8 @@ public class MainScreen {
 
                         break;
                     case 4:
-                        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(task);
-                        taskDialogScreen.setMinimumSize(new Dimension(500, 750));
-                        taskDialogScreen.setResizable(false);
-                        taskDialogScreen.setLocationRelativeTo(null);
-                        taskDialogScreen.setVisible(true);
-
-                        taskDialogScreen.addWindowListener(new WindowAdapter() {
-                            @Override
-                            public void windowClosed(WindowEvent e) {
-                                super.windowClosed(e);
-                                refreshTaskList();
-                            }
-                        });
-
+                        // Edit task
+                        showTaskDialog(task);
                         break;
                     case 5:
                         try {
@@ -189,6 +177,7 @@ public class MainScreen {
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
                 try {
+                    // On close
                     loadProjects();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(root, "Cannot refresh project list. Please, try again or restart the application.");
@@ -197,11 +186,11 @@ public class MainScreen {
         });
     }
 
-    // Open "add new task" dialog window
-    public void showTaskDialog() {
-        TaskDialogScreen taskDialog = new TaskDialogScreen();
+    // Open task dialog window
+    public void showTaskDialog(Task task) {
+        TaskDialogScreen taskDialog = new TaskDialogScreen(task);
 
-        // Set project for new task based on selection
+        // Set project for the new task based on selection
         int projectIndex = projectList.getSelectedIndex();
         Project project = projectModel.get(projectIndex);
         taskDialog.setProject(project);
@@ -215,6 +204,8 @@ public class MainScreen {
             @Override
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
+
+                // On close
                 refreshTaskList();
             }
         });
@@ -225,7 +216,7 @@ public class MainScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                showTaskDialog();
+                showTaskDialog(new Task());
             }
         });
     }
