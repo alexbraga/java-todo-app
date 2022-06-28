@@ -97,6 +97,20 @@ public class MainScreen {
 
                         break;
                     case 4:
+                        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(task);
+                        taskDialogScreen.setMinimumSize(new Dimension(500, 750));
+                        taskDialogScreen.setResizable(false);
+                        taskDialogScreen.setLocationRelativeTo(null);
+                        taskDialogScreen.setVisible(true);
+
+                        taskDialogScreen.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                super.windowClosed(e);
+                                refreshTaskList();
+                            }
+                        });
+
                         break;
                     case 5:
                         try {

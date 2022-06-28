@@ -34,12 +34,35 @@ public class TaskDialogScreen extends JDialog {
     private Project project;
 
     public TaskDialogScreen() {
+        this(new Task());
+    }
+
+    public TaskDialogScreen(Task task) {
+        // Set window properties
         setContentPane(taskDialogPanel);
         setModal(true);
         getRootPane().setDefaultButton(submitButton);
         formatDeadlineField();
-        saveTask();
         cancelTask();
+
+        this.task = task;
+
+        if (task.getName() != null && task.getDeadline() != null) {
+            // If the Task object passed as a parameter already has defined values, fill in the fields
+            nameTextField.setText(task.getName());
+            descriptionTextArea.setText(task.getDescription());
+            notesTextArea.setText(task.getNotes());
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String deadline = dateFormat.format(task.getDeadline());
+            deadlineTextField.setText(deadline);
+
+            // The submit button will update the database
+            updateTask();
+        } else {
+            // If the parent method receives a new Task object as a parameter, the submit button will save the new task to the database
+            saveTask();
+        }
     }
 
     public void setProject(Project project) {
@@ -48,13 +71,12 @@ public class TaskDialogScreen extends JDialog {
 
     public void saveTask() {
         controller = new TaskController();
-        task = new Task();
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (!nameTextField.getText().isEmpty() && !deadlineTextField.getText().isEmpty()) {
-                        // If the 'Name' and 'Deadline' fields are not empty, get user input and save the new task
+                        // If the 'Name' and 'Deadline' fields are not empty, get input from all fields and save the new task
                         task.setName(nameTextField.getText());
                         task.setDescription(descriptionTextArea.getText());
                         task.setIsCompleted(false);
@@ -73,7 +95,37 @@ public class TaskDialogScreen extends JDialog {
                         JOptionPane.showMessageDialog(rootPane, "Task not saved. 'Name' and 'Deadline' cannot be empty.");
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+            }
+        });
+    }
+
+    public void updateTask() {
+        controller = new TaskController();
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (!nameTextField.getText().isEmpty() && !deadlineTextField.getText().isEmpty()) {
+                        // If the 'Name' and 'Deadline' fields are not empty, get input from all fields and update the new task
+                        task.setName(nameTextField.getText());
+                        task.setDescription(descriptionTextArea.getText());
+                        task.setNotes(notesTextArea.getText());
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date deadline = dateFormat.parse(deadlineTextField.getText());
+                        task.setDeadline(deadline);
+
+                        controller.update(task);
+
+                        JOptionPane.showMessageDialog(rootPane, "Task updated successfully.");
+                        onOK();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Task not updated. 'Name' and 'Deadline' cannot be empty.");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
                 }
             }
         });
