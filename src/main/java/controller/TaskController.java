@@ -90,9 +90,7 @@ public class TaskController {
                 "description = ?, " +
                 "completed = ?, " +
                 "notes = ?, " +
-                "deadline = ?," +
-                "created_at = ?," +
-                "project_id = ? " +
+                "deadline = ?" +
                 "WHERE id = ?";
 
         Connection conn = null;
@@ -107,9 +105,7 @@ public class TaskController {
             statement.setBoolean(3, task.isCompleted());
             statement.setString(4, task.getNotes());
             statement.setDate(5, new Date(task.getDeadline().getTime()));
-            statement.setDate(6, new Date(task.getCreatedAt().getTime()));
-            statement.setInt(7, task.getProjectId());
-            statement.setInt(8, task.getId());
+            statement.setInt(6, task.getId());
 
             statement.execute();
         } catch (SQLException ex) {
