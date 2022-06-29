@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  <a href="https://github.com/alexbraga/java-todo-app/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexbraga/cine-log"></a>
+  <a href="https://github.com/alexbraga/java-todo-app/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexbraga/java-todo-app"></a>
   <!-- <a href="https://github.com/alexbraga/java-todo-app/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/alexbraga/java-todo-app?label=license"></a> -->
 </p>
 
@@ -44,8 +44,8 @@
 
 ## How it works
  
-1. Create local database
-2. Run database server
+1. Start SQL server
+2. Create local database
 3. Clone this repository
 4. Compile the code
 5. Run `main.TodoApp`
