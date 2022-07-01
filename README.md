@@ -21,8 +21,8 @@
  <a href="#how-it-works">How it works</a> •
  <a href="#tech-stack">Tech Stack</a> •
  <a href="#how-to-contribute">How to contribute</a> •
- <a href="#author">Author</a> •
- <!-- <a href="#license">License</a> -->
+ <a href="#author">Author</a> <!--•
+ <a href="#license">License</a> -->
 
 </p>
 
@@ -37,6 +37,7 @@
 - [x] Create projects and tasks for each project
 - [x] Edit and remove tasks
 - [x] Responsive layout
+- [ ] Unit tests
 - [ ] Edit and remove projects
 - [ ] Login screen and separate user accounts
 
