@@ -59,7 +59,7 @@ machine: [Git](https://git-scm.com), [Java JDK](https://www.oracle.com/java/tech
 might also want an IDE to work with the code, like
 [IntelliJ IDEA](https://www.jetbrains.com/idea/).
 
-#### Database schemas
+#### Database DDL
 
 ```
 CREATE TABLE `projects` (
