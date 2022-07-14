@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-    A simple Java desktop todo app that features task grouping by project
+    Java desktop todo app featuring task grouping by project
 </h3>
 
 <p align="center">
