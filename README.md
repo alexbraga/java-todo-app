@@ -57,6 +57,7 @@ machine:
 
 - [Git](https://git-scm.com)
 - [Java JDK](https://www.oracle.com/java/technologies/downloads/)
+- [Gradle](https://gradle.org/)
 - [MySQL](https://mariadb.org/)
 - [DBeaver](https://dbeaver.io/)
 
