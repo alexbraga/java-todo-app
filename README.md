@@ -28,40 +28,42 @@
 
 ## About
 
-<p align="justify">A Java desktop todo app built as part of the Capgemini START program. The application performs CRUD operations on a local SQL database and features a responsive interface designed with Java Swing. The source code presented here contains minor personal changes to the interface and implementation of some methods, and adds the "edit task" feature, not included in the original project. More extra features will be added in the future, but the application is already fully functional.</p>
+<p align="justify">A Java desktop todo app built as part of the Capgemini START program. The application performs CRUD operations on a local SQL database and features a responsive interface designed with Java Swing. The source code presented here contains minor personal changes to the interface and implementation of some methods, and adds the "edit task" feature, not included in the original project. More extra features may be added in the future, but the application is already fully functional.</p>
 
 ---
 
 ## Features
 
-- [x] Create projects and tasks for each project
-- [x] Edit and remove tasks
-- [x] Responsive layout
-- [ ] Unit tests
-- [ ] Edit and remove projects
-- [ ] Login screen and separate user accounts
+- Create projects and tasks for each project
+- Edit and remove tasks
+- Responsive layout
 
 ---
 
 ## How it works
- 
-1. Start SQL server
-2. Create local database
-3. Clone this repository
-4. Compile the code
-5. Run `main.TodoApp`
 
-### Pre-requisites
+1. <a href="https://mariadb.com/kb/en/starting-and-stopping-mariadb-automatically/">Start SQL server</a>
+2. <a href="https://mariadb.com/kb/en/create-database/">Create local database</a>
+3. <a href="#database-ddl">Create table</a>
+4. <a href="#clone-this-repository">Clone this repository</a>
+5. Compile the code
+6. Run `main.TodoApp`
+
+#### Pre-requisites
 
 Before you begin, you will need to have the following tools installed on your
-machine: [Git](https://git-scm.com), [Java JDK](https://www.oracle.com/java/technologies/downloads/) and
-[MySQL](https://mariadb.org/). In addition, you
-might also want an IDE to work with the code, like
+machine:
+
+- [Git](https://git-scm.com)
+- [Java JDK](https://www.oracle.com/java/technologies/downloads/)
+- [MySQL](https://mariadb.org/)
+
+In addition, you might also want an IDE to work with the code, like
 [IntelliJ IDEA](https://www.jetbrains.com/idea/).
 
 #### Database DDL
 
-```
+```sql
 CREATE TABLE `projects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -72,7 +74,7 @@ CREATE TABLE `projects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-```
+```sql
 CREATE TABLE `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
