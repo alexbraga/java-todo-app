@@ -43,10 +43,11 @@
 ## How it works
 
 1. <a href="https://mariadb.com/kb/en/starting-and-stopping-mariadb-automatically/">Start SQL server</a>
-2. <a href="https://mariadb.com/kb/en/create-database/">Create local database</a>
-3. <a href="#database-ddl">Create table</a>
+2. <a href="https://dbeaver.com/docs/wiki/Create-Connection/">Connect to the database server using DBeaver</a> (or your preferred database manager)
+3. Create a new database (DBeaver: right click "Databases" -> "Create New Database")
+3. <a href="#database-ddl">Create database tables</a>
 4. <a href="#clone-this-repository">Clone this repository</a>
-5. Compile the code
+5. Open the project folder with your preferred IDE
 6. Run `main.TodoApp`
 
 #### Pre-requisites
@@ -57,6 +58,7 @@ machine:
 - [Git](https://git-scm.com)
 - [Java JDK](https://www.oracle.com/java/technologies/downloads/)
 - [MySQL](https://mariadb.org/)
+- [DBeaver](https://dbeaver.io/)
 
 In addition, you might also want an IDE to work with the code, like
 [IntelliJ IDEA](https://www.jetbrains.com/idea/).
