@@ -129,10 +129,19 @@ The following tools were used in the construction of the project:
 ## How to contribute
 
 1. Fork the project
-2. Create a new branch with your changes: `git checkout -b my-amazing-feature`
-3. Save your changes and create a commit message (in present tense) telling what
-   you did: `git commit -m "Add my-amazing-feature"`
-4. Submit your changes: `git push origin my-feature`
+2. Create a new branch with your changes:
+```
+git checkout -b my-amazing-feature
+```
+3. Save your changes and create a commit message (in present tense) telling what you did:
+```
+git commit -m "Add my amazing feature"
+```
+4. Submit your changes:
+```
+git push origin my-amazing-feature
+```
+5. Create a pull request
 
 ---
 
