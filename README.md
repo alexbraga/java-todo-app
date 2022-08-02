@@ -52,8 +52,7 @@
 
 #### Pre-requisites
 
-Before you begin, you will need to have the following tools installed on your
-machine:
+Before getting started, you'll need to have the following tools installed on your machine:
 
 - [Git](https://git-scm.com)
 - [Java JDK](https://www.oracle.com/java/technologies/downloads/)
