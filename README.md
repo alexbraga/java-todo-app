@@ -35,8 +35,12 @@
 ## Features
 
 - Create projects and tasks for each project
-- Edit and remove tasks
+- Remove tasks
 - Responsive layout
+
+#### Changes to the original project
+
+- Added "Edit tasks" option
 
 ---
 
@@ -47,10 +51,9 @@
 3. Create a new database (DBeaver: right click "Databases" -> "Create New Database")
 3. <a href="#database-ddl">Create database tables</a>
 4. <a href="#clone-this-repository">Clone this repository</a>
-5. Open the project folder with your preferred IDE
-6. Run `main.TodoApp`
+5. <a href="#running-the-application">Run the application</a>
 
-#### Pre-requisites
+### Pre-requisites
 
 Before getting started, you'll need to have the following tools installed on your machine:
 
@@ -63,7 +66,7 @@ Before getting started, you'll need to have the following tools installed on you
 In addition, you might also want an IDE to work with the code, like
 [IntelliJ IDEA](https://www.jetbrains.com/idea/).
 
-#### Database DDL
+### Database DDL
 
 ```sql
 CREATE TABLE `projects` (
@@ -93,11 +96,32 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-#### Clone this repository
+### Clone this repository
 
 ```
 git clone https://github.com/alexbraga/java-todo-app.git
 ```
+
+### Running the application
+
+Navigate to the root directory of the project
+
+```
+cd java-todo-app/
+```
+
+Install the dependencies and build the application*
+```
+./gradlew build
+```
+
+Run the application*
+```
+./gradlew run
+```
+
+- **Note:** replace `./gradlew` with `gradlew.bat` on Windows
+- Alternatively, open the project with your preferred IDE and run `src/main/java/main/TodoApp.java`
 
 ---
 
