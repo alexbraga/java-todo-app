@@ -107,7 +107,7 @@ git clone https://github.com/alexbraga/java-todo-app.git
 Navigate to the root directory of the project
 
 ```
-cd java-todo-app/
+cd java-todo-app
 ```
 
 Install the dependencies and build the application*
