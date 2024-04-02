@@ -49,9 +49,9 @@
 1. <a href="https://mariadb.com/kb/en/starting-and-stopping-mariadb-automatically/">Start SQL server</a>
 2. <a href="https://dbeaver.com/docs/wiki/Create-Connection/">Connect to the database server using DBeaver</a> (or your preferred database manager)
 3. Create a new database (DBeaver: right click "Databases" -> "Create New Database")
-3. <a href="#database-ddl">Create database tables</a>
-4. <a href="#clone-this-repository">Clone this repository</a>
-5. <a href="#running-the-application">Run the application</a>
+4. <a href="#database-ddl">Create database tables</a>
+5. <a href="#clone-this-repository">Clone this repository</a>
+6. <a href="#running-the-application">Run the application</a>
 
 ### Pre-requisites
 
